@@ -1,0 +1,25 @@
+def quick_sort(arr):
+    if len(arr) <= 1:
+        return arr
+
+    pivot = arr[0]
+    left = []
+    right = []
+    equal = [pivot]
+
+    for element in arr[1:]:
+        if element < pivot:
+            left.append(element)
+        elif element > pivot:
+            right.append(element)
+        else:
+            equal.append(element)
+
+    return quick_sort(left) + equal + quick_sort(right)
+
+arr = [90, 23, 101, 45, 65, 23, 67, 89, 34, 23]
+sorted_arr = quick_sort(arr)
+
+print("The sorted array is:")
+for element in sorted_arr:
+    print(element, end="\t")
