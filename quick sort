@@ -1,0 +1,39 @@
+# QUICK SORT
+def partition(arr, beg, end):
+    loc = left = beg
+    right = end
+    flag = 0
+
+    while flag != 1:
+        while arr[loc] <= arr[right] and loc != right:
+            right -= 1
+        if loc == right:
+            flag = 1
+        elif arr[loc] > arr[right]:
+            arr[loc], arr[right] = arr[right], arr[loc]
+            loc = right
+
+        while arr[loc] >= arr[left] and loc != left:
+            left += 1
+        if loc == left:
+            flag = 1
+        elif arr[loc] < arr[left]:
+            arr[loc], arr[left] = arr[left], arr[loc]
+            loc = left
+
+    return loc
+
+
+
+def quickSort(arr, beg, end):
+    if beg < end:
+        loc = partition(arr, beg, end)
+        quickSort(arr, beg, loc - 1)
+        quickSort(arr, loc + 1, end)
+
+arr = [90, 23, 101, 45, 65, 23, 67, 89, 34, 23]
+quickSort(arr, 0, 9)
+
+print("\nThe sorted array is:\n")
+for i in range(10):
+    print(arr[i], end="\t")
